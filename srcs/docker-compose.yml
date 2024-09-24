@@ -1,10 +1,53 @@
+version: '3.9'
+
 services:
   nginx:
     container_name: nginx
     build: ./requirements/nginx
+    volumes:
+      - wordpress_vol:/var/www/html
     ports:
-      - "4242:80"
+      - "443:443"
+    networks:
+      - networkMmoramov
 
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress
+    volumes:
+      - wordpress_vol:/var/www/html
+    env_file:
+      - .env
+    networks:
+      - networkMmoramov
+
+  mariadb:
+    container_name: mariadb
+    build: ./requirements/mariadb
+    volumes:
+      - mariadb_vol:/var/lib/mysql
+    env_file:
+      - .env
+    networks:
+      - networkMmoramov
+
+volumes:
+  mariadb_vol:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/mmoramov/data/mariadb
+      o: bind
+
+  wordpress_vol:
+    driver: local
+    driver_opts:
+      type: none
+      device: /home/mmoramov/data/wordpress
+      o: bind
+
+networks:
+  networkMmoramov:
+    driver: bridge
+    name: networkMmoramov
+
