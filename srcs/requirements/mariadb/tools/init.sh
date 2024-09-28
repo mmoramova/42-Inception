@@ -13,9 +13,9 @@ then
         -e "s|{SQL_DB}|${SQL_DB}|g" \
         -e "s|{SQL_USER}|${SQL_USER}|g" \
         -e "s|{SQL_PASSWORD}|${SQL_PASSWORD}|g" \
-        /usr/local/bin/db_init.sql > /usr/local/bin/db_init_s.sql
+        /usr/local/bin/.db_init.sql > /usr/local/bin/db_init.sql
 
-    mysql -u ${SQL_ROOT_USER} -p${SQL_ROOT_PASSWORD} < /usr/local/bin/db_init_s.sql
+    mysql -u ${SQL_ROOT_USER} -p${SQL_ROOT_PASSWORD} < /usr/local/bin/db_init.sql
 
     mysqladmin -u ${SQL_ROOT_USER} --password=${SQL_ROOT_PASSWORD} shutdown
 fi

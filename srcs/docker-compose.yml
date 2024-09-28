@@ -4,16 +4,22 @@ services:
   nginx:
     container_name: nginx
     build: ./requirements/nginx
+    image: nginx
+    restart: always
     volumes:
       - wordpress_vol:/var/www/html
     ports:
       - "443:443"
+    env_file:
+      - .env
     networks:
       - networkMmoramov
 
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress
+    image: wordpress
+    restart: always
     volumes:
       - wordpress_vol:/var/www/html
     env_file:
@@ -24,6 +30,8 @@ services:
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb
+    image: mariadb
+    restart: always
     volumes:
       - mariadb_vol:/var/lib/mysql
     env_file:
