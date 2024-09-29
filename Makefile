@@ -1,5 +1,8 @@
 all:
+	sudo mkdir -p /home/mmoramov/data/wordpress
+	sudo mkdir -p /home/mmoramov/data/mariadb
 	@docker-compose -f ./srcs/docker-compose.yml up -d --build
+	
 down:
 	@docker-compose -f ./srcs/docker-compose.yml down
 

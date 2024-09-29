@@ -1,6 +1,7 @@
 #!/bin/bash
 sed -e "s|{SSL_CRT}|${SSL_CRT}|g" \
     -e "s|{SSL_KEY}|${SSL_KEY}|g" \
+    -e "s|{DOMAIN_NAME}|${DOMAIN_NAME}|g" \
     /etc/nginx/sites-available/.default > /etc/nginx/sites-available/default
 
 if [ ! -f ${SSL_CRT} ];

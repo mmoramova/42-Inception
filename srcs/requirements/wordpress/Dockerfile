@@ -1,6 +1,6 @@
 FROM debian:bullseye
 
-RUN apt -y update && apt install -y php7.4-fpm php7.4-mysqli curl mariadb-client && \
+RUN apt -y update && apt install -y php7.4-fpm php7.4-mysqli curl mariadb-client php-redis && \
     rm -rf /var/lib/apt/lists/*
 
 EXPOSE 9000

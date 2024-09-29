@@ -39,6 +39,49 @@ services:
     networks:
       - networkMmoramov
 
+  redis:
+    container_name: redis
+    build: ./requirements/bonus/redis
+    image: redis
+    restart: always
+    volumes:
+      - wordpress_vol:/var/www/html
+    ports:
+      - "6379:6379"
+    env_file:
+      - .env
+    networks:
+      - networkMmoramov
+
+  ftp:
+    container_name: ftp
+    build: ./requirements/bonus/ftp
+    image: ftp
+    restart: always
+    volumes:
+      - wordpress_vol:/var/www/html
+    ports:
+      - "21:21"
+      - "21100-21110:21100-21110"
+    env_file:
+      - .env
+    networks:
+      - networkMmoramov
+
+  adminer:
+    container_name: adminer
+    build: ./requirements/bonus/adminer
+    image: adminer
+    restart: always
+    volumes:
+      - wordpress_vol:/var/www/html
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    networks:
+      - networkMmoramov
+
 volumes:
   mariadb_vol:
     driver: local
