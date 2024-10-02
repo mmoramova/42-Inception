@@ -11,6 +11,6 @@ WORKDIR /app/cadvisor
 RUN curl -L https://github.com/google/cadvisor/releases/download/v0.49.1/cadvisor-v0.49.1-linux-amd64 -o cadvisor;\
 chmod +x cadvisor
 
-EXPOSE 8080
+EXPOSE 6000
 
-CMD ["./cadvisor", "--logtostderr"]
+CMD ["./cadvisor", "--logtostderr", "--port=6000"]
