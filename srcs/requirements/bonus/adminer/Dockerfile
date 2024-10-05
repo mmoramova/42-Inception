@@ -1,6 +1,7 @@
 FROM debian:bullseye
 
-RUN apt -y update && apt install -y php7.4 php7.4-mysqli curl && \
+RUN apt-get update && \
+    apt-get install -y php7.4 php7.4-mysqli curl && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/www/html

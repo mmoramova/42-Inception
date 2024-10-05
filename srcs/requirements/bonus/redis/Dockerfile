@@ -1,6 +1,7 @@
 FROM debian:bullseye
 
-RUN apt -y update && apt install -y redis-server && \
+RUN apt-get update && \
+    apt-get install -y redis-server && \
     rm -rf /var/lib/apt/lists/*
 
 EXPOSE 6379

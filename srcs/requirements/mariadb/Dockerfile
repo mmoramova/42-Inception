@@ -1,8 +1,9 @@
 FROM debian:bullseye
 
-RUN apt -y update && apt install -y mariadb-server && \
+RUN apt-get update && \
+    apt-get install -y mariadb-server && \
     rm -rf /var/lib/apt/lists/*
-    
+
 EXPOSE 3306
 
 COPY ./conf/default.conf /etc/mysql/mariadb.conf.d/50-server.cnf
@@ -13,3 +14,5 @@ RUN mkdir -p /var/run/mysqld
 RUN chown -R mysql:mysql /var/lib/mysql /var/run/mysqld
 
 ENTRYPOINT ["/usr/local/bin/db_init.sh"]
+
+CMD ["mysqld"]

@@ -1,12 +1,18 @@
 FROM debian:bullseye
 
-RUN apt -y update && apt install -y php7.4-fpm php7.4-mysqli curl mariadb-client php-redis && \
+RUN apt-get update && \
+    apt-get install -y \
+        php7.4-fpm \
+        php7.4-mysqli \
+        curl \
+        mariadb-client \
+        php-redis && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 EXPOSE 9000
 
-RUN mkdir -p /run/php
-RUN chmod 755 /run/php
+RUN mkdir -p /run/php && chmod 755 /run/php
 
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \
     chmod +x wp-cli.phar && \

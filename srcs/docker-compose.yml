@@ -39,13 +39,23 @@ services:
     networks:
       - networkMmoramov
 
+  static-site:
+    container_name: static-site
+    build: ./requirements/bonus/static-site
+    image: static-site
+    restart: always
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    networks:
+      - networkMmoramov
+
   redis:
     container_name: redis
     build: ./requirements/bonus/redis
     image: redis
     restart: always
-    volumes:
-      - wordpress_vol:/var/www/html
     ports:
       - "6379:6379"
     env_file:
@@ -73,8 +83,6 @@ services:
     build: ./requirements/bonus/adminer
     image: adminer
     restart: always
-    volumes:
-      - wordpress_vol:/var/www/html
     ports:
       - "8080:8080"
     env_file:

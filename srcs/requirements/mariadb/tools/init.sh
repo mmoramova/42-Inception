@@ -20,5 +20,4 @@ then
     mysqladmin -u ${SQL_ROOT_USER} --password=${SQL_ROOT_PASSWORD} shutdown
 fi
 
-exec mysqld
-
+exec "$@"
